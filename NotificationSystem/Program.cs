@@ -18,11 +18,11 @@ namespace NotificationSystem
             
             Console.WriteLine("Welcome to Notification service:\n");
             while(true){
-            Console.WriteLine("\nEnter your Preference:\n1.create a profile\n2.Send Message\n3.Exit");
+            Console.WriteLine("\nEnter your Preference:\n1.User Profile\n2.Send Message\n3.Exit");
             string userPrefOption = Console.ReadLine()??"";
             if (userPrefOption == "1")
             {               
-                Console.WriteLine("Choose: \n1.Create New profile\n2.Edit Profile\n3.Exit");
+                Console.WriteLine("\nChoose: \n1.Create New profile\n2.Edit Profile\n3.Exit");
                 string userProfilePref = Console.ReadLine()??"";
                 if(userProfilePref == "1")
                     {
