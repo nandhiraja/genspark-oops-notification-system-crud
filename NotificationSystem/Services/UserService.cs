@@ -1,12 +1,23 @@
 using System.Diagnostics;
+using NotificationSystem.Interfaces;
 using NotificationSystem.Models;
 using NotificationSystem.Repositories;
 namespace NotificationSystem.Services
 {
+    /// <summary>
+    /// Service for handling user profiles.
+    /// Decoupled from concrete implementations using Dependency Injection.
+    /// </summary>
     internal class UserService
     {   
-        UserRepository _userRepository = new UserRepository();
+        private IUserRepository _userRepository;
         static string _userId = "0";
+
+        public UserService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         public User CreateUserProfile()
         {   
             string id = _GenerateUserId();
