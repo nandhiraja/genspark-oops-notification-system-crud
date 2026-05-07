@@ -17,7 +17,7 @@ namespace NotificationSystem.Repositories
         {
             foreach(var currentUser in _userDataBase)
             {
-                if(currentUser.Email == email)
+                if(currentUser.Email == email)   // find user with user id
                 {
                   return currentUser;   
                 }

@@ -9,7 +9,7 @@ namespace NotificationSystem.Repositories
 
         public void AddUserMessage(User user, Message message)
         {   
-            if(_messageDataBase.ContainsKey(user))
+            if(!_messageDataBase.ContainsKey(user))
             {
                 _messageDataBase.Add(user,new List<Message>());  //. add new list for new user for db
             }
