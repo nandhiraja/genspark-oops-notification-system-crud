@@ -1,10 +1,13 @@
 using NotificationSystem.Interfaces;
 using NotificationSystem.Models;
+using NotificationSystem.Repositories;
 
 namespace NotificationSystem.Senders
 {
+    
     internal class EmailNotificationSender : INotification
     {
+        UserRepository userRepository = new UserRepository();
         public bool Send(Message message)
         {   bool isSend =true;    // assume message send succesfully
 
@@ -18,8 +21,17 @@ namespace NotificationSystem.Senders
         public void PrintNotification(Message notificationMessage)
 
         {
+            User? sender = userRepository.FindUserById(notificationMessage.SenderId);
+            User? receiver = userRepository.FindUserById(notificationMessage.ReceiverId);
+            if(sender==null || receiver ==null)
+            {
+                return;    // if sender or receiver not found return no print happen
+            }
+            
             Console.WriteLine("\n================ Email Notification send Successfully =======================\n");
-            Console.WriteLine($"Sender: {notificationMessage.SenderId}\nReceiver: {notificationMessage.ReceiverId}");
+            Console.WriteLine($"Sender Name: {sender.UserName}  | Receiver Name: {receiver.UserName}");
+
+            Console.WriteLine($"Sender: {sender.Email}\nReceiver: {receiver.Email}");
             Console.WriteLine("\n------------------------------------------------------------------------------\n");
 
             Console.WriteLine($"Message: {notificationMessage.MessageContent}\n Date: {notificationMessage.Date}");
