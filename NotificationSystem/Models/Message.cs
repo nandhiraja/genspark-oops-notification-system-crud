@@ -18,8 +18,9 @@ namespace NotificationSystem.Models
         {
             Date = DateTime.UtcNow;
         }
-        public Message(string senderId, string receiverId, string messageContent)
-        {
+        public Message(string   messageId, string senderId, string receiverId, string messageContent)
+        {   
+            this.MessageId  =messageId;
             this.SenderId =senderId;
             this.ReceiverId =receiverId;
             this.MessageContent=messageContent;

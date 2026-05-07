@@ -16,7 +16,7 @@ namespace NotificationSystem.Models
         public User(string id,string userName,string email, string phoneNumber)
         {   this.Id = id;
             this.UserName =userName;
-            this.Email = Email;
+            this.Email = email;
             this.PhoneNumber = phoneNumber;
 
         }
