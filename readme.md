@@ -1,3 +1,4 @@
+```txt
 Welcome to Notification service:
 
 
@@ -19,7 +20,7 @@ Please enter your full name : NandhiRaja
 
 Please enter your EmailId: nandhi@gmail.com
 
-Please enter your PhoneNumber: 9655468718
+Please enter your PhoneNumber: 9655***718
 
 ============================== Thank You ==================================
 
@@ -27,7 +28,7 @@ User Details:
 User Id      : 1 
 User Name    : NandhiRaja 
 User Email   : nandhi@gmail.com 
-User PhoneNo : 9655468718 
+User PhoneNo : 9655**8718 
 
 Enter your Preference:
 1.User Profile
@@ -47,7 +48,7 @@ Please enter your full name : Raja
 
 Please enter your EmailId: raja@gmail.com
 
-Please enter your PhoneNumber: 9942435076
+Please enter your PhoneNumber: 9942***076
 
 ============================== Thank You ==================================
 
@@ -55,7 +56,7 @@ User Details:
 User Id      : 2 
 User Name    : Raja 
 User Email   : raja@gmail.com 
-User PhoneNo : 9942435076 
+User PhoneNo : 994***35076 
 
 Enter your Preference:
 1.User Profile
@@ -97,8 +98,8 @@ Message: Hi,How are you?
 ================ SMS Notification send Successfully =======================
 
 Sender Name: NandhiRaja  | Receiver Name: Raja
-Sender: 9655468718
-Receiver: 9942435076
+Sender: 965***68718
+Receiver: 99***35076
 
 ------------------------------------------------------------------------------
 
@@ -146,7 +147,7 @@ User Details:
 User Id      : 1 
 User Name    : Nandhi 
 User Email   : nandhi@gmail.com 
-User PhoneNo : 9655468718 
+User PhoneNo : 96****718 
 
 Enter your Preference:
 1.User Profile
@@ -174,8 +175,8 @@ Do you need to push notification via:
 ================ SMS Notification send Successfully =======================
 
 Sender Name: Nandhi  | Receiver Name: Raja
-Sender: 9655468718
-Receiver: 9942435076
+Sender: 96***68718
+Receiver: 994***5076
 
 ------------------------------------------------------------------------------
 
@@ -190,3 +191,4 @@ Enter your Preference:
 2.Send Message
 3.Exit
 3
+```
