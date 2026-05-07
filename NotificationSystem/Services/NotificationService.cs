@@ -19,15 +19,45 @@ namespace NotificationSystem.Services
             {
                 return;
             }
-            
+
             Message? newMessage = _SendNewMessage(currentUser);
             if (newMessage == null)
             {
               Console.WriteLine("Sorry. Can't send message...");
               return;
             }
-            _messageRepository.AddUserMessage(currentUser,newMessage);
-            PrintNotification(newMessage);
+
+            Console.WriteLine("Do you need to push notification via: ");
+            Console.WriteLine("\n1.Email notification\n2.SMS notification\n3.Both");
+            string userPrefNotification = Console.ReadLine()??"";
+            if (userPrefNotification == "1")
+            {
+                Message emailMessage = _sendEmailNotification(newMessage);
+                _messageRepository.AddUserMessage(currentUser,emailMessage);
+                PrintNotification(emailMessage);
+            }
+            else if (userPrefNotification == "2")
+            {
+                Message SMSMessage = _sendSMSNotification(newMessage);
+                _messageRepository.AddUserMessage(currentUser,SMSMessage);
+                PrintNotification(SMSMessage);
+             }
+            else if (userPrefNotification == "3")
+            {
+                Message emailMessage = _sendEmailNotification(newMessage);
+                _messageRepository.AddUserMessage(currentUser,emailMessage);
+                PrintNotification(emailMessage);
+
+                Message SMSMessage = _sendSMSNotification(newMessage);
+                _messageRepository.AddUserMessage(currentUser,SMSMessage);
+                PrintNotification(SMSMessage);
+
+            }
+            else
+            {
+                Console.WriteLine("Enter valid input");
+            }
+
 
             return;
         }
@@ -82,7 +112,12 @@ namespace NotificationSystem.Services
         }
         public void PrintNotification(Message notificationMessage)
         {
-            Console.WriteLine("\n================ Notification send Successfully ============================\n");
+            Console.WriteLine($"\n================ {notificationMessage.NotificationMode} Notification send Successfully ============================\n");
+            Console.WriteLine($"Sender : {notificationMessage.SenderId}");
+            Console.WriteLine($"Receiver : {notificationMessage.ReceiverId}");
+            Console.WriteLine($"Message : {notificationMessage.MessageContent}");
+            Console.WriteLine($"Date : {notificationMessage.Date}");
+            Console.WriteLine($"\n================ ===================================================================== ============================\n");
 
         }
         string _GenerateMessageId()
@@ -91,6 +126,17 @@ namespace NotificationSystem.Services
             string newId =  Convert.ToString(++previousId);
             _messageId = newId;
             return newId;
+        }
+
+        Message _sendSMSNotification(Message message)
+        {
+               message.NotificationMode = NotificationType.SMS;
+               return message;
+        }
+         Message _sendEmailNotification(Message message)
+        {
+            message.NotificationMode = NotificationType.Email;
+               return message;
         }
 
     }
