@@ -3,67 +3,62 @@ using NotificationSystem.Models;
 
 namespace NotificationSystem.Repositories
 {
-    internal class MessageRepository:IMessageRepository
+    // Repository for managing messages
+    internal class MessageRepository : IMessageRepository
     {
-        static Dictionary<User,List<Message>> _messageDataBase = new Dictionary<User, List<Message>>();
+        static Dictionary<string, List<Message>> _messageDataBase = new Dictionary<string, List<Message>>();
 
         public void AddUserMessage(User user, Message message)
         {   
-            if(!_messageDataBase.ContainsKey(user))
+            if(!_messageDataBase.ContainsKey(user.Id))  // check for new user
             {
-                _messageDataBase.Add(user,new List<Message>());  //. add new list for new user for db
+                _messageDataBase.Add(user.Id, new List<Message>());
             }
-            _messageDataBase[user].Add(message);   // add user with message
-        
+            _messageDataBase[user.Id].Add(message);
         }
 
         public List<Message> GetUserMessages(User user)
         {
-            if(_messageDataBase.ContainsKey(user)) // check user send any message previously
+            if(_messageDataBase.ContainsKey(user.Id)) // check user send any earlier messages
             {
-                return _messageDataBase[user];
+                return _messageDataBase[user.Id];
             }
-            return new List<Message>();    // if no user send any previous message return empty list
+            return new List<Message>();
         }
 
-         public bool UpdateUserMessages(User user, Message previousMessage , Message currentMessage)
-          {
-            if(_messageDataBase.ContainsKey(user)) // check user send any message previously
-            {   List<Message> data = _messageDataBase[user];
-                int range = data.Count;
-                for( int i =0; i<range ;i++)
-                {   Message message = data[i];
-                    if(message.MessageId == previousMessage.MessageId)
+        public bool UpdateUserMessages(User user, Message updatedMessage)
+        {
+            if(_messageDataBase.ContainsKey(user.Id))
+            {   
+                List<Message> data = _messageDataBase[user.Id];
+                for(int i = 0; i < data.Count; i++)
+                {   
+                    if(data[i].MessageId == updatedMessage.MessageId) // find the exist message
                     {
-                        data[i] = currentMessage;
-                        
-                        _messageDataBase[user] = data;
-                        return true;   // if message is update successfully return true
+                        data[i] = updatedMessage;
+                        return true;
                     }
                 }
             }
-            return false;  // if message is not found;
-          }
+            return false;
+        }
           
-          public Message? DeleteUserMessages(User user , Message message)
-          {
-            if(_messageDataBase.ContainsKey(user)) // check user send any message previously
-            {   List<Message> data = _messageDataBase[user];
-                int range = data.Count;
-                for( int i =0; i<range ;i++)
-                {   Message currentMessage = data[i];
-                    if(currentMessage.MessageId == message.MessageId)
+        public Message? DeleteUserMessages(User user, Message message)
+        {
+            if(_messageDataBase.ContainsKey(user.Id))
+            {   
+                List<Message> data = _messageDataBase[user.Id];
+                for(int i = 0; i < data.Count; i++)
+                {   
+                    if(data[i].MessageId == message.MessageId)
                     {
-                        data.RemoveAt(i);
-                        
-                        _messageDataBase[user] = data;
-                        return currentMessage;   // if message is delete successfully return message
+                        Message deletedMsg = data[i];
+                        data.RemoveAt(i);   // remove that message user choosed
+                        return deletedMsg;
                     }
                 }
             }
-            return null;  // no message delete or found ;
-          }
-          
-
+            return null;
+        }
     }
 }
