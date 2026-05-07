@@ -1,0 +1,15 @@
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/bin/Debug/net10.0/NotificationSystem
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/bin/Debug/net10.0/NotificationSystem.deps.json
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/bin/Debug/net10.0/NotificationSystem.runtimeconfig.json
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/bin/Debug/net10.0/NotificationSystem.dll
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/bin/Debug/net10.0/NotificationSystem.pdb
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/obj/Debug/net10.0/NotificationSystem.GeneratedMSBuildEditorConfig.editorconfig
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/obj/Debug/net10.0/NotificationSystem.AssemblyInfoInputs.cache
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/obj/Debug/net10.0/NotificationSystem.AssemblyInfo.cs
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/obj/Debug/net10.0/NotificationSystem.csproj.CoreCompileInputs.cache
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/obj/Debug/net10.0/NotificationSystem.sourcelink.json
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/obj/Debug/net10.0/NotificationSystem.dll
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/obj/Debug/net10.0/refint/NotificationSystem.dll
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/obj/Debug/net10.0/NotificationSystem.pdb
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/obj/Debug/net10.0/NotificationSystem.genruntimeconfig.cache
+/Users/nandhiraja/Presidio-Internship/gitSpace/genspark-oops-notification-system-crud/NotificationSystem/obj/Debug/net10.0/ref/NotificationSystem.dll

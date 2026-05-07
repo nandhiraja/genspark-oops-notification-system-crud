@@ -33,6 +33,7 @@ namespace NotificationSystem.Services
             Message? newMessage = _SendNewMessage(currentUser, receiver, userMessage);
             if (newMessage == null)
             {
+              
               Console.WriteLine("Sorry. Can't send message...");
               return;
             }
@@ -51,9 +52,10 @@ namespace NotificationSystem.Services
                 
                 if (sender is EmailNotificationSender) 
                 {
-                    sendMsg.NotificationMode = NotificationType.Email;
+                     sendMsg.NotificationMode = NotificationType.Email;
                 }
-                else if (sender is SMSNotificationSender)
+                
+                 else if (sender is SMSNotificationSender)
                 {
                     sendMsg.NotificationMode = NotificationType.SMS;
                 }
@@ -66,9 +68,11 @@ namespace NotificationSystem.Services
         /// <summary>
         /// Authenticates the user based on the provided email.
         /// </summary>
+        
         public User? LoginUser(string loginEmail)
         {   
             User? loginUser = _GetUser(loginEmail);
+
             if(loginUser!=null)
             {
                 return loginUser;
@@ -101,6 +105,7 @@ namespace NotificationSystem.Services
             Console.WriteLine($"Sender : {notificationMessage.SenderId}");
             Console.WriteLine($"Receiver : {notificationMessage.ReceiverId}");
             Console.WriteLine($"Message : {notificationMessage.MessageContent}");
+
             Console.WriteLine($"Date : {notificationMessage.Date}");
             Console.WriteLine($"\n================ ===================================================================== ============================\n");
         }
@@ -111,6 +116,44 @@ namespace NotificationSystem.Services
             string newId =  Convert.ToString(++previousId);
             _messageId = newId;
             return newId;
+        }
+
+        // Retrieves all messages for a user
+        public List<Message> GetUserMessages(User currentUser)
+        {
+              return _messageRepository.GetUserMessages(currentUser);
+        }
+
+        // Edits existing message
+        public bool EditMessage(User currentUser, string messageId, string newContent)
+        {
+            var messages = _messageRepository.GetUserMessages(currentUser);
+            foreach(var msg in messages)
+            {
+                
+                if(msg.MessageId == messageId)
+                {
+                    msg.MessageContent = newContent;
+                    return _messageRepository.UpdateUserMessages(currentUser, msg);
+                }
+            }
+           
+           
+            return false;
+        }
+
+        // Deletes an existing message
+        public Message? DeleteMessage(User currentUser, string messageId)
+        {
+            var messages = _messageRepository.GetUserMessages(currentUser);
+            foreach(var msg in messages)
+            {
+                if(msg.MessageId == messageId)
+                {
+                    return _messageRepository.DeleteUserMessages(currentUser, msg);
+                }
+            }
+            return null;
         }
     }
 }

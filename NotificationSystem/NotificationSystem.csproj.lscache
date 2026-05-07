@@ -69,10 +69,11 @@ Program.cs
 Repositories/
  MessageRepository.cs
  UserRepository.cs
-Sender/
+Senders/
  EmailNotificationSender.cs
  SMSNotificationSender.cs
 Services/
+ NotificationFactory.cs
  NotificationService.cs
  UserService.cs
 
