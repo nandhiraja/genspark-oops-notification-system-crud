@@ -6,7 +6,7 @@ namespace NotificationSystem.Services
     internal class UserService
     {   
         UserRepository _userRepository = new UserRepository();
-        static string _userId = "1";
+        static string _userId = "0";
         public User CreateUserProfile()
         {   
             string id = _GenerateUserId();
@@ -16,13 +16,18 @@ namespace NotificationSystem.Services
             Console.Write("Please enter your full name : ");
             string userName = Console.ReadLine()??"";
             Console.WriteLine("");
+            Console.Write("Please enter your EmailId: ");
             string userEmail = Console.ReadLine()??"";
             Console.WriteLine("");
+            Console.Write("Please enter your PhoneNumber: ");
+
             string userPhoneNo = Console.ReadLine()??"";
             
             Console.WriteLine("\n============================== Thank You ==================================\n");
 
             User newUser =  new User(id,userName,userEmail,userPhoneNo);
+            _userRepository.AddUser(newUser);
+            PrintUser(newUser);
             return newUser;
         }
         public User? EditUser(string email)
@@ -66,12 +71,12 @@ namespace NotificationSystem.Services
             else if (editSection =="3")
                 {
                     {
-                    Console.WriteLine($"Current Phone Number: {currentUser.Email}");
+                    Console.WriteLine($"Current Phone Number: {currentUser.PhoneNumber}");
                     Console.Write("New PhoneNo : ");
                     string newPhoneNumber = Console.ReadLine()??"";
                     if (newPhoneNumber != "" )
                     {
-                        currentUser.Email = newPhoneNumber;
+                        currentUser.PhoneNumber = newPhoneNumber;
                     }
                     else
                         {
@@ -82,7 +87,7 @@ namespace NotificationSystem.Services
             else if (editSection =="4")
                 {
                     Console.WriteLine("\n============================== Thank You ==================================\n");
-
+                    PrintUser(currentUser);
                     return currentUser;
         
                 }
@@ -103,6 +108,15 @@ namespace NotificationSystem.Services
             string newId =  Convert.ToString(++previousId);
             _userId = newId;
             return newId;
+        }
+        void PrintUser(User user)
+        {
+            Console.WriteLine("User Details: ");
+            Console.WriteLine($"User Id      : {user.Id} ");
+            Console.WriteLine($"User Name    : {user.UserName} ");
+            Console.WriteLine($"User Email   : {user.Email} ");
+            Console.WriteLine($"User PhoneNo : {user.PhoneNumber} ");
+
         }
 
     }
