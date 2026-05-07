@@ -2,6 +2,7 @@ using System.Reflection.Metadata.Ecma335;
 using NotificationSystem.Interfaces;
 using NotificationSystem.Models;
 using NotificationSystem.Repositories;
+using NotificationSystem.Senders;
 
 namespace NotificationSystem.Services
 {
@@ -11,6 +12,8 @@ namespace NotificationSystem.Services
         static string _messageId = "1"; 
         static UserRepository _userRepository = new UserRepository();
         static MessageRepository _messageRepository = new MessageRepository();
+        static EmailNotificationSender _emailNotificationSender =   new EmailNotificationSender();
+        static SMSNotificationSender _sMSNotificationSender = new SMSNotificationSender();
         public void ProcessNotification()
 
         {   
@@ -34,23 +37,19 @@ namespace NotificationSystem.Services
             {
                 Message emailMessage = _sendEmailNotification(newMessage);
                 _messageRepository.AddUserMessage(currentUser,emailMessage);
-                PrintNotification(emailMessage);
             }
             else if (userPrefNotification == "2")
             {
                 Message SMSMessage = _sendSMSNotification(newMessage);
                 _messageRepository.AddUserMessage(currentUser,SMSMessage);
-                PrintNotification(SMSMessage);
              }
             else if (userPrefNotification == "3")
             {
                 Message emailMessage = _sendEmailNotification(newMessage);
                 _messageRepository.AddUserMessage(currentUser,emailMessage);
-                PrintNotification(emailMessage);
 
                 Message SMSMessage = _sendSMSNotification(newMessage);
                 _messageRepository.AddUserMessage(currentUser,SMSMessage);
-                PrintNotification(SMSMessage);
 
             }
             else
@@ -131,11 +130,14 @@ namespace NotificationSystem.Services
         Message _sendSMSNotification(Message message)
         {
                message.NotificationMode = NotificationType.SMS;
+               _sMSNotificationSender.Send(message);
+            
                return message;
         }
          Message _sendEmailNotification(Message message)
         {
             message.NotificationMode = NotificationType.Email;
+            _emailNotificationSender.Send(message);
                return message;
         }
 
